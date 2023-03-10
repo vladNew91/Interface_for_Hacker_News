@@ -1,7 +1,7 @@
 # Interface for Hacker News 
 https://news.ycombinator.com/news
 
-# [Demo]()
+# [Demo](https://vladnew91-int-for-hacker-news.netlify.app)
 
 ## Conditions:
 Main page:
