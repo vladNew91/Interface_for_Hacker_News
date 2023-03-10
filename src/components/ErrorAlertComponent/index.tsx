@@ -10,11 +10,12 @@ const alertTime = 5000;
 export const ErrorAlertComponent: React.FC = (): JSX.Element => {
   const [open, setOpen] = useState<boolean>(true);
 
+  const closeAlert = useCallback(() => setOpen(false), [setOpen]);
+
   useEffect(() => {
     setTimeout(closeAlert, alertTime);
-  }, []);
+  }, [closeAlert]);
 
-  const closeAlert = useCallback(() => setOpen(false), [setOpen]);
 
   return (
     <Box sx={{ position: 'fixed', right: 0, bottom: 0, p: 1 }}>

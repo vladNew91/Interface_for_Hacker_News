@@ -18,7 +18,7 @@ export const LayoutComponent: React.FC<LayoutComponentProps> = ({
 }: LayoutComponentProps): JSX.Element => {
     const navigate = useNavigate();
 
-    const handlePageBack = useCallback(() => navigate(prewPage), []);
+    const handlePageBack = useCallback(() => navigate(prewPage), [navigate]);
 
     return (
         <>

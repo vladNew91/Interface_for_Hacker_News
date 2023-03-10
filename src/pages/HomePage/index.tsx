@@ -23,19 +23,7 @@ export const HomePage: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   const [requestError, setRequestError] = useState<boolean>(false);
 
-  useEffect(() => {
-    setRequestError(false);
-    makeRequest();
-
-    const requestLoop = setInterval(() => makeRequest(), 60000);
-
-    return () => {
-      clearInterval(requestLoop);
-    };
-  }, []);
-
   const toggleLoading = useCallback(() => setLoading(state => !state), []);
-  const handleReloadNews = useCallback(() => makeRequest(), []);
 
   const makeRequest = useCallback(async () => {
     toggleLoading();
@@ -52,7 +40,19 @@ export const HomePage: React.FC = (): JSX.Element => {
     toggleLoading();
   }, [toggleLoading]);
 
-  const goToPage = useCallback((url: string) => navigate(url), []);
+  useEffect(() => {
+    setRequestError(false);
+    makeRequest();
+
+    const requestLoop = setInterval(() => makeRequest(), 60000);
+
+    return () => {
+      clearInterval(requestLoop);
+    };
+  }, [makeRequest]);
+
+  const handleReloadNews = useCallback(() => makeRequest(), [makeRequest]);
+  const goToPage = useCallback((url: string) => navigate(url), [navigate]);
 
   if (!data || loading) return <LoadingComponent />
 
